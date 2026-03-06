@@ -4,25 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Missão Leitura!!!</title>
-
 <style>
-body{
+body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg,#0d2b45,#1e90ff);
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 20px;
+    align-items: center;
     min-height: 100vh;
-    margin: 0;
 }
 
-.container{
+.container {
     background: white;
-    padding: 15px 40px;
     border-radius: 25px;
-    width: 95%;
-    max-width: 1050px;
+    width: 90vw;
+    max-width: 1200px;
+    padding: 2vw;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.35);
     display: flex;
@@ -30,8 +29,7 @@ body{
     align-items: center;
 }
 
-/* Título e imagem */
-.titulo{
+.titulo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,8 +37,8 @@ body{
     margin-bottom: 10px;
 }
 
-.titulo img{
-    width: 160px; 
+.titulo img {
+    width: 160px;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
@@ -49,54 +47,52 @@ body{
     flex-shrink: 0;
 }
 
-h1{
+h1 {
     font-size: 90px;
     margin: 0;
     color: #28c940;
     letter-spacing: 2px;
-    text-shadow:
-        2px 2px 0 #1a5a20,
-        4px 4px 8px rgba(0,0,0,0.4);
+    text-shadow: 2px 2px 0 #1a5a20, 4px 4px 8px rgba(0,0,0,0.4);
 }
 
-#pontuacao{
+#pontuacao {
     font-size: 26px;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-#feedback{
+#feedback {
     font-size: 40px;
     font-weight: bold;
     height: 50px;
     margin: 5px 0;
 }
 
-img.pergunta{
-    width: 40vw;
-    max-width: 400px;
+img.pergunta {
+    width: 50vw;
+    max-width: 600px;
     height: auto;
     object-fit: contain;
-    margin-bottom: 10px;
+    margin-bottom: 1.5vw;
     filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
     transition: transform 0.3s, filter 0.3s;
 }
 
 img.pergunta:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     filter: drop-shadow(0 15px 20px rgba(0,0,0,0.4));
 }
 
-#opcoes{
+#opcoes {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 2vw;
 }
 
-button{
+button {
     font-family:"Arial Black", Arial, sans-serif;
-    font-size: 3vw;
+    font-size: 2.5vw;
     max-font-size: 44px;
     min-font-size: 24px;
     padding: 1vw 2vw;
@@ -108,16 +104,18 @@ button{
     transition: all 0.2s;
     box-shadow: 0 6px 0 rgba(0,0,0,0.3);
 }
-button:hover{
+
+button:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 0 rgba(0,0,0,0.3);
 }
-button:active{
+
+button:active {
     transform: translateY(2px);
     box-shadow: 0 5px 0 rgba(0,0,0,0.3);
 }
 
-.progress{
+.progress {
     width: 100%;
     background: #ddd;
     height: 20px;
@@ -125,7 +123,7 @@ button:active{
     margin-top: 20px;
 }
 
-.progress-bar{
+.progress-bar {
     height: 20px;
     background: linear-gradient(90deg,#4CAF50,#8BC34A);
     width: 0%;
@@ -133,14 +131,14 @@ button:active{
     transition: width 0.5s;
 }
 
-.creditos{
+.creditos {
     margin-top: 12px;
     font-weight: bold;
     color: black;
     font-size: 16px;
 }
 
-#fim-jogo{
+#fim-jogo {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,7 +153,8 @@ button:active{
     text-align: center;
     gap: 30px;
 }
-#fim-jogo button{
+
+#fim-jogo button {
     font-size: 36px;
     padding: 15px 40px;
     border-radius: 15px;
@@ -165,16 +164,15 @@ button:active{
     color: white;
     transition: 0.2s;
 }
-#fim-jogo button:hover{
+
+#fim-jogo button:hover {
     background: #145214;
     transform: scale(1.05);
 }
 </style>
 </head>
 <body>
-
 <div class="container">
-
     <div class="titulo">
         <img src="https://img2.clipart-library.com/27/free-online-images-clip-art/free-online-images-clip-art-1.jpg" alt="Clipart">
         <h1>Missão Leitura!!!</h1>
@@ -197,12 +195,11 @@ button:active{
     <div class="creditos">
         Desenvolvido por professor Mário Menezes email: mario_menezes2009@edu.madeira.gov.pt
     </div>
-
 </div>
 
 <script>
+// Cores e perguntas
 let cores = ["#ff6b6b","#4dabf7","#51cf66"];
-
 let perguntas = [
 {imagem:"pato.png", correta:"pato", opcoes:["pato","papa","papo"]},
 {imagem:"pipa.png", correta:"pipa", opcoes:["pipa","pato","papa"]},
@@ -302,14 +299,7 @@ let perguntaAtual = 0;
 let pontos = 0;
 let erros = 0;
 
-function baralhar(array){
-    let novo = [...array];
-    for(let i = novo.length-1; i>0; i--){
-        let j = Math.floor(Math.random()*(i+1));
-        [novo[i], novo[j]] = [novo[j], novo[i]];
-    }
-    return novo;
-}
+function baralhar(array){ let novo = [...array]; for(let i=novo.length-1;i>0;i--){ let j=Math.floor(Math.random()*(i+1)); [novo[i],novo[j]]=[novo[j],novo[i]]; } return novo; }
 
 function carregarPergunta(){
     let pergunta = perguntas[perguntaAtual];
@@ -348,32 +338,25 @@ function proximaPergunta(){
     if(perguntaAtual >= perguntas.length){
         document.getElementById("imagem").style.display = "none";
         document.getElementById("opcoes").style.display = "none";
-        document.getElementById("barra").style.width = "100%";
-
-        let container = document.querySelector(".container");
-        container.innerHTML = `
-            <div id="fim-jogo">
-                🏆 Missão completa!<br>
-                Pontos: ${pontos} | Erros: ${erros}
-                <button onclick="reiniciarJogo()">Reiniciar</button>
-            </div>
-        `;
-        return;
+        document.getElementById("feedback").style.display = "none";
+        document.querySelector(".progress").style.display = "none";
+        document.querySelector(".container").innerHTML = `
+        <div id="fim-jogo">
+            <h1>Fim do Jogo!</h1>
+            <p>Pontos: ${pontos} | Erros: ${erros}</p>
+            <button onclick="location.reload()">Jogar Novamente</button>
+        </div>`;
+    } else {
+        carregarPergunta();
     }
-    carregarPergunta();
-}
-
-function reiniciarJogo(){
-    location.reload();
 }
 
 function atualizarBarra(){
-    let progresso = (perguntaAtual / perguntas.length) * 100;
-    document.getElementById("barra").style.width = progresso + "%";
+    let porcentagem = ((perguntaAtual)/perguntas.length)*100;
+    document.getElementById("barra").style.width = porcentagem+"%";
 }
 
 carregarPergunta();
 </script>
-
 </body>
 </html>
