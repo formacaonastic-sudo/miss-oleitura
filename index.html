@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Missão Leitura!!!</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#0d2b45,#1e90ff);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container{
+    background: white;
+    padding: 15px 40px;
+    border-radius: 25px;
+    width: 1050px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título e imagem */
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.titulo img{
+    width: 160px; 
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    margin-top: 30px;
+    margin-left: -20px; /* desloca para a esquerda */
+    flex-shrink: 0;
+}
+
+h1{
+    font-size: 70px;
+    margin: 0;
+    color: #28c940;
+    letter-spacing: 2px;
+    text-shadow:
+        2px 2px 0 #1a5a20,
+        4px 4px 8px rgba(0,0,0,0.4);
+}
+
+#pontuacao{
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#feedback{
+    font-size: 40px;
+    font-weight: bold;
+    height: 50px;
+    margin: 5px 0;
+}
+
+img.pergunta{
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
+    transition: transform 0.3s, filter 0.3s;
+}
+
+img.pergunta:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 15px 20px rgba(0,0,0,0.4));
+}
+
+#opcoes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+button{
+    font-family:"Arial Black", Arial, sans-serif;
+    font-size: 44px;
+    padding: 18px 35px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    min-width: 180px;
+    color: white;
+    transition: all 0.2s;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.3);
+}
+button:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 0 rgba(0,0,0,0.3);
+}
+button:active{
+    transform: translateY(2px);
+    box-shadow: 0 5px 0 rgba(0,0,0,0.3);
+}
+
+.progress{
+    width: 100%;
+    background: #ddd;
+    height: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.progress-bar{
+    height: 20px;
+    background: linear-gradient(90deg,#4CAF50,#8BC34A);
+    width: 0%;
+    border-radius: 12px;
+    transition: width 0.5s;
+}
+
+.creditos{
+    margin-top: 12px;
+    font-weight: bold;
+    color: black;
+    font-size: 16px;
+}
+
+/* Caixa de fim de jogo */
+#fim-jogo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 40px;
+    background: #28c940;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: white;
+    font-size: 48px;
+    text-align: center;
+    gap: 30px;
+}
+#fim-jogo button{
+    font-size: 36px;
+    padding: 15px 40px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    background: #1a5a20;
+    color: white;
+    transition: 0.2s;
+}
+#fim-jogo button:hover{
+    background: #145214;
+    transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="titulo">
+        <img src="https://img2.clipart-library.com/27/free-online-images-clip-art/free-online-images-clip-art-1.jpg" alt="Clipart">
+        <h1>Missão Leitura!!!</h1>
+    </div>
+
+    <div id="pontuacao">
+        Pontos: <span id="pontos">0</span> | Erros: <span id="erros">0</span>
+    </div>
+
+    <img id="imagem" class="pergunta" src="">
+
+    <div id="feedback"></div>
+
+    <div id="opcoes"></div>
+
+    <div class="progress">
+        <div class="progress-bar" id="barra"></div>
+    </div>
+
+    <div class="creditos">
+        Desenvolvido por professor Mário Menezes - email: mario_menezes2009@edu.madeira.gov.pt
+    </div>
+
+</div>
+
+<script>
+let cores = ["#ff6b6b","#4dabf7","#51cf66"];
+let perguntas = [
+    {imagem:"pato.png", correta:"pato", opcoes:["pato","pai","papa"]},
+    {imagem:"pai.png", correta:"pai", opcoes:["pai","pau","papo"]},
+    {imagem:"patito.png", correta:"patito", opcoes:["patito","pato","papa"]},
+    {imagem:"pão.png", correta:"pão", opcoes:["pão","pau","pai"]},
+    {imagem:"pé.png", correta:"pé", opcoes:["pé","pá","pai"]},
+    {imagem:"pá.png", correta:"pá", opcoes:["pá","pé","pau"]},
+    {imagem:"pau.png", correta:"pau", opcoes:["pau","pai","pão"]},
+    {imagem:"popó.png", correta:"popó", opcoes:["popó","papo","papa"]},
+    {imagem:"papa.png", correta:"papa", opcoes:["papa","papo","pato"]},
+    {imagem:"papo.png", correta:"papo", opcoes:["papo","papa","pato"]},
+    {imagem:"pipa.png", correta:"pipa", opcoes:["pipa","papa","pato"]},
+    {imagem:"pote.png", correta:"pote", opcoes:["pote","pai","pão"]},
+    {imagem:"palito.png", correta:"palito", opcoes:["palito","teia","papa"]},
+    {imagem:"tapete.png", correta:"tapete", opcoes:["tapete","papo","pato"]},
+    {imagem:"teia.png", correta:"teia", opcoes:["teia","pai","pato"]},
+    {imagem:"tio.png", correta:"tio", opcoes:["tio","pato","palito"]},
+    {imagem:"Tito.png", correta:"Tito", opcoes:["Tito","tio","pato"]},
+    {imagem:"totó.png", correta:"totó", opcoes:["Tito","tio","totó"]},
+    {imagem:"lata.png", correta:"lata", opcoes:["lua","lata","papa"]},
+    {imagem:"lupa.png", correta:"lupa", opcoes:["lupa","lata","pato"]},
+    {imagem:"loto.png", correta:"loto", opcoes:["loto","lata","lupa"]},
+    {imagem:"lula.png", correta:"lula", opcoes:["lula","pato","lua"]},
+    {imagem:"Lili.png", correta:"Lili", opcoes:["Lili","tio","pato"]},
+    {imagem:"lua.png", correta:"lua", opcoes:["lua","lata","totó"]},
+];
+let perguntaAtual = 0;
+let pontos = 0;
+let erros = 0;
+
+function baralhar(array){
+    let novo = [...array];
+    for(let i = novo.length-1; i>0; i--){
+        let j = Math.floor(Math.random()*(i+1));
+        [novo[i], novo[j]] = [novo[j], novo[i]];
+    }
+    return novo;
+}
+
+function carregarPergunta(){
+    let pergunta = perguntas[perguntaAtual];
+    document.getElementById("imagem").src = pergunta.imagem;
+    document.getElementById("imagem").style.display = "block";
+    document.getElementById("opcoes").style.display = "flex";
+    document.getElementById("feedback").innerHTML = "";
+    
+    let opcoesHTML = "";
+    let opcoesMisturadas = baralhar(pergunta.opcoes);
+    opcoesMisturadas.forEach((opcao,index)=>{
+        opcoesHTML += `<button style="background:${cores[index]}" onclick="verificar('${opcao}')">${opcao}</button>`;
+    });
+    document.getElementById("opcoes").innerHTML = opcoesHTML;
+    atualizarBarra();
+}
+
+function verificar(resposta){
+    let correta = perguntas[perguntaAtual].correta;
+    if(resposta === correta){
+        pontos++;
+        document.getElementById("pontos").innerHTML = pontos;
+        document.getElementById("feedback").innerHTML = "🎉 Parabéns!";
+        document.getElementById("feedback").style.color = "green";
+        setTimeout(proximaPergunta,1500);
+    } else {
+        erros++;
+        document.getElementById("erros").innerHTML = erros;
+        document.getElementById("feedback").innerHTML = "❌ Tenta outra vez!";
+        document.getElementById("feedback").style.color = "red";
+    }
+}
+
+function proximaPergunta(){
+    perguntaAtual++;
+    if(perguntaAtual >= perguntas.length){
+        // Esconde elementos antigos
+        document.getElementById("imagem").style.display = "none";
+        document.getElementById("opcoes").style.display = "none";
+        document.getElementById("barra").style.width = "100%";
+
+        // Caixa de fim de jogo
+        let container = document.querySelector(".container");
+        container.innerHTML = `
+            <div id="fim-jogo">
+                🏆 Missão completa!<br>
+                Pontos: ${pontos} | Erros: ${erros}
+                <button onclick="reiniciarJogo()">Reiniciar</button>
+            </div>
+        `;
+        return;
+    }
+    carregarPergunta();
+}
+
+function reiniciarJogo(){
+    location.reload(); // reinicia tudo rapidamente
+}
+
+function atualizarBarra(){
+    let progresso = (perguntaAtual / perguntas.length) * 100;
+    document.getElementById("barra").style.width = progresso + "%";
+}
+
+carregarPergunta();
+</script>
+
+</body>
+</html>
