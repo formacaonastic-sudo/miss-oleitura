@@ -73,8 +73,9 @@ h1{
 }
 
 img.pergunta{
-    width: 220px;
-    height: 220px;
+    width: 40vw;
+    max-width: 400px;
+    height: auto;
     object-fit: contain;
     margin-bottom: 10px;
     filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
@@ -95,12 +96,14 @@ img.pergunta:hover {
 
 button{
     font-family:"Arial Black", Arial, sans-serif;
-    font-size: 44px;
-    padding: 18px 35px;
+    font-size: 3vw;
+    max-font-size: 44px;
+    min-font-size: 24px;
+    padding: 1vw 2vw;
+    min-width: 120px;
     border-radius: 15px;
     border: none;
     cursor: pointer;
-    min-width: 180px;
     color: white;
     transition: all 0.2s;
     box-shadow: 0 6px 0 rgba(0,0,0,0.3);
@@ -343,6 +346,10 @@ function verificar(resposta){
 function proximaPergunta(){
     perguntaAtual++;
     if(perguntaAtual >= perguntas.length){
+        document.getElementById("imagem").style.display = "none";
+        document.getElementById("opcoes").style.display = "none";
+        document.getElementById("barra").style.width = "100%";
+
         let container = document.querySelector(".container");
         container.innerHTML = `
             <div id="fim-jogo">
