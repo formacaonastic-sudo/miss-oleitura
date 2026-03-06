@@ -93,9 +93,6 @@ img.pergunta:hover {
 button {
     font-family:"Arial Black", Arial, sans-serif;
     font-size: 2.5vw;
-    max-font-size: 44px;
-    min-font-size: 24px;
-    padding: 1vw 2vw;
     min-width: 120px;
     border-radius: 15px;
     border: none;
@@ -198,165 +195,108 @@ button:active {
 </div>
 
 <script>
-// Cores e perguntas
 let cores = ["#ff6b6b","#4dabf7","#51cf66"];
 let perguntas = [
-{imagem:"pato.png", correta:"pato", opcoes:["pato","papa","papo"]},
-{imagem:"pipa.png", correta:"pipa", opcoes:["pipa","pato","papa"]},
-{imagem:"Pepe.png", correta:"Pepe", opcoes:["Pepe","pipa","pote"]},
-{imagem:"pote.png", correta:"pote", opcoes:["pote","pato","pipa"]},
-{imagem:"palito.png", correta:"palito", opcoes:["palito","pato","papa"]},
-{imagem:"papa.png", correta:"papa", opcoes:["papa","pato","pipa"]},
-{imagem:"teia.png", correta:"teia", opcoes:["teia","tio","tia"]},
-{imagem:"tapete.png", correta:"tapete", opcoes:["tapete","teia","teto"]},
-{imagem:"tio.png", correta:"tio", opcoes:["tio","tapete","teia"]},
-{imagem:"totó.png", correta:"totó", opcoes:["totó","tio","tato"]},
-{imagem:"Tito.png", correta:"Tito", opcoes:["Tito","totó","teia"]},
-{imagem:"apita.png", correta:"apita", opcoes:["apita","pipa","pato"]},
-{imagem:"lata.png", correta:"lata", opcoes:["lata","loto","lupa"]},
-{imagem:"loto.png", correta:"loto", opcoes:["loto","lata","lupa"]},
-{imagem:"lupa.png", correta:"lupa", opcoes:["lupa","lua","lata"]},
-{imagem:"Lili.png", correta:"Lili", opcoes:["Lili","lula","lata"]},
-{imagem:"lua.png", correta:"lua", opcoes:["lua","lula","lupa"]},
-{imagem:"lula.png", correta:"lula", opcoes:["lula","lua","lata"]},
-{imagem:"dado.png", correta:"dado", opcoes:["dado","pai","papa"]},
-{imagem:"dedo.png", correta:"dedo", opcoes:["dedo","pau","papo"]},
-{imagem:"data.png", correta:"data", opcoes:["patito","data","papa"]},
-{imagem:"Didi.png", correta:"Didi", opcoes:["pão","Didi","pato"]},
-{imagem:"dália.png", correta:"dália", opcoes:["dália","pá","pai"]},
-{imagem:"Dudu.png", correta:"Dudu", opcoes:["pá","Dudu","pau"]},
-{imagem:"dia.png", correta:"dia", opcoes:["dia","pai","pão"]},
-{imagem:"mota.png", correta:"mota", opcoes:["popó","mota","papa"]},
-{imagem:"mala.png", correta:"mala", opcoes:["mala","papo","pato"]},
-{imagem:"mãe.png", correta:"mãe", opcoes:["papo","mãe","pato"]},
-{imagem:"meia.png", correta:"meia", opcoes:["meia","papa","pato"]},
-{imagem:"mata.png", correta:"mata", opcoes:["mata","papa","pato"]},
-{imagem:"mola.png", correta:"mola", opcoes:["data","mola","papa"]},
-{imagem:"vela.png", correta:"vela", opcoes:["dedo","vela","papo"]},
-{imagem:"ovo.png", correta:"ovo", opcoes:["patito","ovo","papa"]},
-{imagem:"Vilela.png", correta:"Vilela", opcoes:["Vilela","vela","ovo"]},
-{imagem:"viola.png", correta:"viola", opcoes:["viola","pá","pai"]},
-{imagem:"Violeta.png", correta:"Violeta", opcoes:["Violeta","data","pau"]},
-{imagem:"luva.png", correta:"luva", opcoes:["luva","pai","pão"]},
-{imagem:"uva.png", correta:"uva", opcoes:["popó","uva","papa"]},
-{imagem:"cama.png", correta:"cama", opcoes:["cama","mãe","pato"]},
-{imagem:"copo.png", correta:"copo", opcoes:["meia","copo","pato"]},
-{imagem:"cão.png", correta:"cão", opcoes:["mata","cão","pato"]},
-{imagem:"cola.png", correta:"cola", opcoes:["luva","cola","pão"]},
-{imagem:"capa.png", correta:"capa", opcoes:["popó","capa","papa"]},
-{imagem:"cuco.png", correta:"cuco", opcoes:["mala","cuco","pato"]},
-{imagem:"nota.png", correta:"nota", opcoes:["luva","nota","pão"]},
-{imagem:"novelo.png", correta:"novelo", opcoes:["popó","novelo","papa"]},
-{imagem:"neve.png", correta:"neve", opcoes:["neve","cuco","pato"]},
-{imagem:"Nini.png", correta:"Nini", opcoes:["luva","Nini","pão"]},
-{imagem:"navio.png", correta:"navio", opcoes:["popó","navio","papa"]},
-{imagem:"nata.png", correta:"nata", opcoes:["mala","nata","pato"]},
-{imagem:"rato.png", correta:"rato", opcoes:["rato","pá","pai"]},
-{imagem:"roda.png", correta:"roda", opcoes:["Violeta","roda","remo"]},
-{imagem:"rua.png", correta:"rua", opcoes:["roda","rua","pão"]},
-{imagem:"remo.png", correta:"remo", opcoes:["remo","rua","papa"]},
-{imagem:"ramo.png", correta:"ramo", opcoes:["mala","ramo","pato"]},
-{imagem:"rola.png", correta:"rola", opcoes:["rua","rola","pato"]},
-{imagem:"bola.png", correta:"bola", opcoes:["bola","bolo","bata"]},
-{imagem:"bolo.png", correta:"bolo", opcoes:["bolo","bola","bule"]},
-{imagem:"bata.png", correta:"bata", opcoes:["bata","bolo","Bela"]},
-{imagem:"bebé.png", correta:"bebé", opcoes:["bebé","bule","bola"]},
-{imagem:"Bela.png", correta:"Bela", opcoes:["Bela","bebé","bata"]},
-{imagem:"bule.png", correta:"bule", opcoes:["bule","bolo","bebé"]},
-{imagem:"gato.png", correta:"gato", opcoes:["gato","galo","gola"]},
-{imagem:"gola.png", correta:"gola", opcoes:["gola","gato","galo"]},
-{imagem:"cogumelo.png", correta:"cogumelo", opcoes:["cogumelo","galo","gato"]},
-{imagem:"galo.png", correta:"galo", opcoes:["galo","gato","gola"]},
-{imagem:"Gugu.png", correta:"Gugu", opcoes:["Gugu","galo","gato"]},
-{imagem:"papagaio.png", correta:"papagaio", opcoes:["papagaio","gato","galo"]},
-{imagem:"sapo.png", correta:"sapo", opcoes:["sapo","sopa","sol"]},
-{imagem:"sapato.png", correta:"sapato", opcoes:["sapato","sapo","sopa"]},
-{imagem:"sola.png", correta:"sola", opcoes:["sola","sol","sopa"]},
-{imagem:"sol.png", correta:"sol", opcoes:["sol","sino","sopa"]},
-{imagem:"sino.png", correta:"sino", opcoes:["sino","sol","sopa"]},
-{imagem:"sopa.png", correta:"sopa", opcoes:["sopa","sapo","sol"]},
-{imagem:"janela.png", correta:"janela", opcoes:["janela","judo","jipe"]},
-{imagem:"judo.png", correta:"judo", opcoes:["judo","janela","jipe"]},
-{imagem:"tijolo.png", correta:"tijolo", opcoes:["tijolo","judo","janela"]},
-{imagem:"jipe.png", correta:"jipe", opcoes:["jipe","judo","janela"]},
-{imagem:"laje.png", correta:"laje", opcoes:["laje","janela","jipe"]},
-{imagem:"Jaime.png", correta:"Jaime", opcoes:["Jaime","judo","janela"]},
-{imagem:"foca.png", correta:"foca", opcoes:["foca","faca","figo"]},
-{imagem:"faca.png", correta:"faca", opcoes:["faca","foca","fumo"]},
-{imagem:"Fátima.png", correta:"Fátima", opcoes:["Fátima","faca","foca"]},
-{imagem:"figo.png", correta:"figo", opcoes:["figo","fumo","fatia"]},
-{imagem:"fumo.png", correta:"fumo", opcoes:["fumo","figo","fatia"]},
-{imagem:"fatia.png", correta:"fatia", opcoes:["fatia","figo","fumo"]},
-{imagem:"zínia.png", correta:"zínia", opcoes:["zínia","azul","gazela"]},
-{imagem:"gazela.png", correta:"gazela", opcoes:["gazela","zínia","azul"]},
-{imagem:"azulejo.png", correta:"azulejo", opcoes:["azulejo","azul","gazela"]},
-{imagem:"azul.png", correta:"azul", opcoes:["azul","azulejo","baliza"]},
-{imagem:"baliza.png", correta:"baliza", opcoes:["baliza","azul","búzio"]},
-{imagem:"búzio.png", correta:"búzio", opcoes:["búzio","baliza","azul"]}
+  {imagem:"pato.png", correta:"pato", opcoes:["pato","papa","papo"]},
+  {imagem:"pipa.png", correta:"pipa", opcoes:["pipa","pato","papa"]},
+  {imagem:"Pepe.png", correta:"Pepe", opcoes:["Pepe","pipa","pote"]},
+  {imagem:"pote.png", correta:"pote", opcoes:["pote","pato","pipa"]},
+  {imagem:"palito.png", correta:"palito", opcoes:["palito","pato","papa"]},
+  {imagem:"papa.png", correta:"papa", opcoes:["papa","pato","pipa"]},
+  {imagem:"teia.png", correta:"teia", opcoes:["teia","tio","tia"]},
+  {imagem:"tapete.png", correta:"tapete", opcoes:["tapete","teia","teto"]},
+  {imagem:"tio.png", correta:"tio", opcoes:["tio","tapete","teia"]},
+  {imagem:"totó.png", correta:"totó", opcoes:["totó","tio","tato"]},
+  {imagem:"Tito.png", correta:"Tito", opcoes:["Tito","totó","teia"]},
+  {imagem:"apita.png", correta:"apita", opcoes:["apita","pipa","pato"]},
+  {imagem:"lata.png", correta:"lata", opcoes:["lata","loto","lupa"]},
+  {imagem:"loto.png", correta:"loto", opcoes:["loto","lata","lupa"]},
+  {imagem:"lupa.png", correta:"lupa", opcoes:["lupa","lua","lata"]},
+  {imagem:"Lili.png", correta:"Lili", opcoes:["Lili","lula","lata"]},
+  {imagem:"lua.png", correta:"lua", opcoes:["lua","lula","lupa"]},
+  {imagem:"lula.png", correta:"lula", opcoes:["lula","lua","lata"]},
+  {imagem:"dado.png", correta:"dado", opcoes:["dado","pai","papa"]},
+  {imagem:"dedo.png", correta:"dedo", opcoes:["dedo","pau","papo"]},
+  {imagem:"data.png", correta:"data", opcoes:["patito","data","papa"]},
+  {imagem:"Didi.png", correta:"Didi", opcoes:["pão","Didi","pato"]},
+  {imagem:"dália.png", correta:"dália", opcoes:["dália","pá","pai"]},
+  {imagem:"Dudu.png", correta:"Dudu", opcoes:["pá","Dudu","pau"]},
+  {imagem:"dia.png", correta:"dia", opcoes:["dia","pai","pão"]},
+  {imagem:"mota.png", correta:"mota", opcoes:["popó","mota","papa"]},
+  {imagem:"mala.png", correta:"mala", opcoes:["mala","papo","pato"]},
+  {imagem:"mãe.png", correta:"mãe", opcoes:["papo","mãe","pato"]},
+  {imagem:"meia.png", correta:"meia", opcoes:["meia","papa","pato"]},
+  {imagem:"mata.png", correta:"mata", opcoes:["mata","papa","pato"]},
+  {imagem:"mola.png", correta:"mola", opcoes:["data","mola","papa"]},
+  {imagem:"vela.png", correta:"vela", opcoes:["dedo","vela","papo"]},
+  {imagem:"ovo.png", correta:"ovo", opcoes:["patito","ovo","papa"]},
+  {imagem:"Vilela.png", correta:"Vilela", opcoes:["Vilela","vela","ovo"]},
+  {imagem:"viola.png", correta:"viola", opcoes:["viola","pá","pai"]},
+  {imagem:"Violeta.png", correta:"Violeta", opcoes:["Violeta","data","pau"]},
+  {imagem:"luva.png", correta:"luva", opcoes:["luva","pai","pão"]},
+  {imagem:"uva.png", correta:"uva", opcoes:["popó","uva","papa"]},
+  {imagem:"cama.png", correta:"cama", opcoes:["cama","mãe","pato"]},
+  {imagem:"copo.png", correta:"copo", opcoes:["meia","copo","pato"]},
+  {imagem:"cão.png", correta:"cão", opcoes:["mata","cão","pato"]},
+  {imagem:"cola.png", correta:"cola", opcoes:["luva","cola","pão"]},
+  {imagem:"capa.png", correta:"capa", opcoes:["popó","capa","papa"]},
+  {imagem:"cuco.png", correta:"cuco", opcoes:["mala","cuco","pato"]},
+  {imagem:"nota.png", correta:"nota", opcoes:["luva","nota","pão"]},
+  {imagem:"novelo.png", correta:"novelo", opcoes:["popó","novelo","papa"]},
+  {imagem:"neve.png", correta:"neve", opcoes:["neve","cuco","pato"]},
+  {imagem:"Nini.png", correta:"Nini", opcoes:["luva","Nini","pão"]},
+  {imagem:"navio.png", correta:"navio", opcoes:["popó","navio","papa"]},
+  {imagem:"nata.png", correta:"nata", opcoes:["mala","nata","pato"]},
+  {imagem:"rato.png", correta:"rato", opcoes:["rato","pá","pai"]},
+  {imagem:"roda.png", correta:"roda", opcoes:["Violeta","roda","remo"]},
+  {imagem:"rua.png", correta:"rua", opcoes:["roda","rua","pão"]},
+  {imagem:"remo.png", correta:"remo", opcoes:["remo","rua","papa"]},
+  {imagem:"ramo.png", correta:"ramo", opcoes:["mala","ramo","pato"]},
+  {imagem:"rola.png", correta:"rola", opcoes:["rua","rola","pato"]},
+  {imagem:"bola.png", correta:"bola", opcoes:["bola","bolo","bata"]},
+  {imagem:"bolo.png", correta:"bolo", opcoes:["bolo","bola","bule"]},
+  {imagem:"bata.png", correta:"bata", opcoes:["bata","bolo","Bela"]},
+  {imagem:"bebé.png", correta:"bebé", opcoes:["bebé","bule","bola"]},
+  {imagem:"Bela.png", correta:"Bela", opcoes:["Bela","bebé","bata"]},
+  {imagem:"bule.png", correta:"bule", opcoes:["bule","bolo","bebé"]},
+  {imagem:"gato.png", correta:"gato", opcoes:["gato","galo","gola"]},
+  {imagem:"gola.png", correta:"gola", opcoes:["gola","gato","galo"]},
+  {imagem:"cogumelo.png", correta:"cogumelo", opcoes:["cogumelo","galo","gato"]},
+  {imagem:"galo.png", correta:"galo", opcoes:["galo","gato","gola"]},
+  {imagem:"Gugu.png", correta:"Gugu", opcoes:["Gugu","galo","gato"]},
+  {imagem:"papagaio.png", correta:"papagaio", opcoes:["papagaio","gato","galo"]},
+  {imagem:"sapo.png", correta:"sapo", opcoes:["sapo","sopa","sol"]},
+  {imagem:"sapato.png", correta:"sapato", opcoes:["sapato","sapo","sopa"]},
+  {imagem:"sola.png", correta:"sola", opcoes:["sola","sol","sopa"]},
+  {imagem:"sol.png", correta:"sol", opcoes:["sol","sino","sopa"]},
+  {imagem:"sino.png", correta:"sino", opcoes:["sino","sol","sopa"]},
+  {imagem:"sopa.png", correta:"sopa", opcoes:["sopa","sapo","sol"]},
+  {imagem:"janela.png", correta:"janela", opcoes:["janela","judo","jipe"]},
+  {imagem:"judo.png", correta:"judo", opcoes:["judo","janela","jipe"]},
+  {imagem:"tijolo.png", correta:"tijolo", opcoes:["tijolo","judo","janela"]},
+  {imagem:"jipe.png", correta:"jipe", opcoes:["jipe","judo","janela"]},
+  {imagem:"laje.png", correta:"laje", opcoes:["laje","janela","jipe"]},
+  {imagem:"Jaime.png", correta:"Jaime", opcoes:["Jaime","judo","janela"]},
+  {imagem:"foca.png", correta:"foca", opcoes:["foca","faca","figo"]},
+  {imagem:"faca.png", correta:"faca", opcoes:["faca","foca","fumo"]},
+  {imagem:"Fátima.png", correta:"Fátima", opcoes:["Fátima","faca","foca"]},
+  {imagem:"figo.png", correta:"figo", opcoes:["figo","fumo","fatia"]},
+  {imagem:"fumo.png", correta:"fumo", opcoes:["fumo","figo","fatia"]},
+  {imagem:"fatia.png", correta:"fatia", opcoes:["fatia","figo","fumo"]},
+  {imagem:"zínia.png", correta:"zínia", opcoes:["zínia","azul","gazela"]},
+  {imagem:"gazela.png", correta:"gazela", opcoes:["gazela","zínia","azul"]},
+  {imagem:"azulejo.png", correta:"azulejo", opcoes:["azulejo","azul","gazela"]},
+  {imagem:"azul.png", correta:"azul", opcoes:["azul","azulejo","baliza"]},
+  {imagem:"baliza.png", correta:"baliza", opcoes:["baliza","azul","búzio"]},
+  {imagem:"búzio.png", correta:"búzio", opcoes:["búzio","baliza","azul"]}
 ];
 
-let perguntaAtual = 0;
-let pontos = 0;
-let erros = 0;
+let perguntaAtual=0, pontos=0, erros=0;
 
-function baralhar(array){ let novo = [...array]; for(let i=novo.length-1;i>0;i--){ let j=Math.floor(Math.random()*(i+1)); [novo[i],novo[j]]=[novo[j],novo[i]]; } return novo; }
+function baralhar(a){let n=[...a];for(let i=n.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[n[i],n[j]]=[n[j],n[i]];}return n;}
 
-function carregarPergunta(){
-    let pergunta = perguntas[perguntaAtual];
-    document.getElementById("imagem").src = pergunta.imagem;
-    document.getElementById("imagem").style.display = "block";
-    document.getElementById("opcoes").style.display = "flex";
-    document.getElementById("feedback").innerHTML = "";
-    
-    let opcoesHTML = "";
-    let opcoesMisturadas = baralhar(pergunta.opcoes);
-    opcoesMisturadas.forEach((opcao,index)=>{
-        opcoesHTML += `<button style="background:${cores[index]}" onclick="verificar('${opcao}')">${opcao}</button>`;
-    });
-    document.getElementById("opcoes").innerHTML = opcoesHTML;
-    atualizarBarra();
-}
+function carregarPergunta(){let p=perguntas[perguntaAtual];document.getElementById("imagem").src=p.imagem;document.getElementById("imagem").style.display="block";document.getElementById("opcoes").style.display="flex";document.getElementById("feedback").innerHTML="";let h="";baralhar(p.opcoes).forEach((o,i)=>{h+=`<button style=\"background:${cores[i]}\" onclick=\"verificar('${o}')\">${o}</button>`});document.getElementById("opcoes").innerHTML=h;atualizarBarra();}
 
-function verificar(resposta){
-    let correta = perguntas[perguntaAtual].correta;
-    if(resposta === correta){
-        pontos++;
-        document.getElementById("pontos").innerHTML = pontos;
-        document.getElementById("feedback").innerHTML = "🎉 Parabéns!";
-        document.getElementById("feedback").style.color = "green";
-        setTimeout(proximaPergunta,1500);
-    } else {
-        erros++;
-        document.getElementById("erros").innerHTML = erros;
-        document.getElementById("feedback").innerHTML = "❌ Tenta outra vez!";
-        document.getElementById("feedback").style.color = "red";
-    }
-}
+function verificar(r){let c=perguntas[perguntaAtual].correta;if(r===c){pontos++;document.getElementById("pontos").innerHTML=pontos;document.getElementById("feedback").innerHTML="🎉 Parabéns!";document.getElementById("feedback").style.color="green";setTimeout(proximaPergunta,1500);}else{erros++;document.getElementById("erros").innerHTML=erros;document.getElementById("feedback").innerHTML="❌ Tenta outra vez!";document.getElementById("feedback").style.color="red";}}
 
-function proximaPergunta(){
-    perguntaAtual++;
-    if(perguntaAtual >= perguntas.length){
-        document.getElementById("imagem").style.display = "none";
-        document.getElementById("opcoes").style.display = "none";
-        document.getElementById("feedback").style.display = "none";
-        document.querySelector(".progress").style.display = "none";
-        document.querySelector(".container").innerHTML = `
-        <div id="fim-jogo">
-            <h1>Fim do Jogo!</h1>
-            <p>Pontos: ${pontos} | Erros: ${erros}</p>
-            <button onclick="location.reload()">Jogar Novamente</button>
-        </div>`;
-    } else {
-        carregarPergunta();
-    }
-}
-
-function atualizarBarra(){
-    let porcentagem = ((perguntaAtual)/perguntas.length)*100;
-    document.getElementById("barra").style.width = porcentagem+"%";
-}
-
-carregarPergunta();
-</script>
-</body>
-</html>
+function proximaPergunta(){perguntaAtual++;if(perguntaAtual>=perguntas.length){document.querySelector(".container").innerHTML=`<div id=\"fim-jogo\"><h1>Fim
