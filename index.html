@@ -1,8 +1,7 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Missão Leitura!!!</title>
 <style>
 body{
@@ -10,63 +9,87 @@ body{
     background: linear-gradient(135deg,#0d2b45,#1e90ff);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 20px;
     min-height: 100vh;
     margin: 0;
 }
+
 .container{
     background: white;
-    padding: 20px 40px;
+    padding: 15px 40px;
     border-radius: 25px;
-    width: 95%;
-    max-width: 1600px;
-    height: 95vh; /* ocupa quase toda a altura do ecrã */
+    width: 1050px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.35);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 }
+
+/* Título e imagem */
 .titulo{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 35px;
+    gap: 15px;
+    margin-bottom: 10px;
 }
+
 .titulo img{
-    width: 260px;
+    width: 160px; 
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    margin-top: 30px;
+    margin-left: -20px; /* desloca para a esquerda */
+    flex-shrink: 0;
 }
+
 h1{
-    font-size: 100px;
+    font-size: 90px;
     margin: 0;
     color: #28c940;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 0 #1a5a20, 4px 4px 8px rgba(0,0,0,0.4);
+    text-shadow:
+        2px 2px 0 #1a5a20,
+        4px 4px 8px rgba(0,0,0,0.4);
 }
+
 #pontuacao{
     font-size: 26px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
+
 #feedback{
     font-size: 40px;
     font-weight: bold;
     height: 50px;
+    margin: 5px 0;
 }
+
 img.pergunta{
-    width: 300px;
-    height: 300px;
+    width: 220px;
+    height: 220px;
     object-fit: contain;
+    margin-bottom: 10px;
     filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
+    transition: transform 0.3s, filter 0.3s;
 }
+
+img.pergunta:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 15px 20px rgba(0,0,0,0.4));
+}
+
 #opcoes{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
 }
+
 button{
     font-family:"Arial Black", Arial, sans-serif;
     font-size: 44px;
@@ -87,12 +110,15 @@ button:active{
     transform: translateY(2px);
     box-shadow: 0 5px 0 rgba(0,0,0,0.3);
 }
+
 .progress{
     width: 100%;
     background: #ddd;
     height: 20px;
     border-radius: 12px;
+    margin-top: 20px;
 }
+
 .progress-bar{
     height: 20px;
     background: linear-gradient(90deg,#4CAF50,#8BC34A);
@@ -100,11 +126,15 @@ button:active{
     border-radius: 12px;
     transition: width 0.5s;
 }
+
 .creditos{
+    margin-top: 12px;
     font-weight: bold;
     color: black;
     font-size: 16px;
 }
+
+/* Caixa de fim de jogo */
 #fim-jogo{
     display: flex;
     flex-direction: column;
@@ -139,8 +169,9 @@ button:active{
 <body>
 
 <div class="container">
+
     <div class="titulo">
-        <img src="https://img2.clipart-library.com/27/free-online-images-clip-art/free-online-images-clip-art-1.jpg" alt="logo">
+        <img src="https://img2.clipart-library.com/27/free-online-images-clip-art/free-online-images-clip-art-1.jpg" alt="Clipart">
         <h1>Missão Leitura!!!</h1>
     </div>
 
@@ -161,37 +192,105 @@ button:active{
     <div class="creditos">
         Desenvolvido por professor Mário Menezes email: mario_menezes2009@edu.madeira.gov.pt
     </div>
+
 </div>
 
 <script>
 let cores = ["#ff6b6b","#4dabf7","#51cf66"];
 let perguntas = [
-{imagem:"pato.png", correta:"pato", opcoes:["pato","pai","papa"]},
-{imagem:"pai.png", correta:"pai", opcoes:["pai","pau","papo"]},
-{imagem:"patito.png", correta:"patito", opcoes:["patito","pato","papa"]},
-{imagem:"pão.png", correta:"pão", opcoes:["pão","pau","pai"]},
-{imagem:"pé.png", correta:"pé", opcoes:["pé","pá","pai"]},
-{imagem:"pá.png", correta:"pá", opcoes:["pá","pé","pau"]},
-{imagem:"pau.png", correta:"pau", opcoes:["pau","pai","pão"]},
-{imagem:"popó.png", correta:"popó", opcoes:["popó","papo","papa"]},
-{imagem:"papa.png", correta:"papa", opcoes:["papa","papo","pato"]},
-{imagem:"papo.png", correta:"papo", opcoes:["papo","papa","pato"]},
-{imagem:"pipa.png", correta:"pipa", opcoes:["pipa","papa","pato"]},
-{imagem:"pote.png", correta:"pote", opcoes:["pote","pai","pão"]},
-{imagem:"palito.png", correta:"palito", opcoes:["palito","teia","papa"]},
-{imagem:"tapete.png", correta:"tapete", opcoes:["tapete","papo","pato"]},
-{imagem:"teia.png", correta:"teia", opcoes:["teia","pai","pato"]},
-{imagem:"tio.png", correta:"tio", opcoes:["tio","pato","palito"]},
-{imagem:"Tito.png", correta:"Tito", opcoes:["Tito","tio","pato"]},
-{imagem:"totó.png", correta:"totó", opcoes:["Tito","tio","totó"]},
-{imagem:"lata.png", correta:"lata", opcoes:["lua","lata","papa"]},
-{imagem:"lupa.png", correta:"lupa", opcoes:["lupa","lata","pato"]},
+{imagem:"pato.png", correta:"pato", opcoes:["pato","papa","papo"]},
+{imagem:"pipa.png", correta:"pipa", opcoes:["pipa","pato","papa"]},
+{imagem:"Pepe.png", correta:"Pepe", opcoes:["Pepe","pipa","pote"]},
+{imagem:"pote.png", correta:"pote", opcoes:["pote","pato","pipa"]},
+{imagem:"palito.png", correta:"palito", opcoes:["palito","pato","papa"]},
+{imagem:"papa.png", correta:"papa", opcoes:["papa","pato","pipa"]},
+{imagem:"teia.png", correta:"teia", opcoes:["teia","tio","tia"]},
+{imagem:"tapete.png", correta:"tapete", opcoes:["tapete","teia","teto"]},
+{imagem:"tio.png", correta:"tio", opcoes:["tio","tapete","teia"]},
+{imagem:"totó.png", correta:"totó", opcoes:["totó","tio","tato"]},
+{imagem:"Tito.png", correta:"Tito", opcoes:["Tito","totó","teia"]},
+{imagem:"apita.png", correta:"apita", opcoes:["apita","pipa","pato"]},
+{imagem:"lata.png", correta:"lata", opcoes:["lata","loto","lupa"]},
 {imagem:"loto.png", correta:"loto", opcoes:["loto","lata","lupa"]},
-{imagem:"lula.png", correta:"lula", opcoes:["lula","pato","lua"]},
-{imagem:"Lili.png", correta:"Lili", opcoes:["Lili","tio","pato"]},
-{imagem:"lua.png", correta:"lua", opcoes:["lua","lata","totó"]}
+{imagem:"lupa.png", correta:"lupa", opcoes:["lupa","lua","lata"]},
+{imagem:"Lili.png", correta:"Lili", opcoes:["Lili","lula","lata"]},
+{imagem:"lua.png", correta:"lua", opcoes:["lua","lula","lupa"]},
+{imagem:"lula.png", correta:"lula", opcoes:["lula","lua","lata"]},
+{imagem:"dado.png", correta:"dado", opcoes:["dado","pai","papa"]},
+{imagem:"dedo.png", correta:"dedo", opcoes:["dedo","pau","papo"]},
+{imagem:"data.png", correta:"data", opcoes:["patito","data","papa"]},
+{imagem:"Didi.png", correta:"Didi", opcoes:["pão","Didi","pato"]},
+{imagem:"dália.png", correta:"dália", opcoes:["dália","pá","pai"]},
+{imagem:"Dudu.png", correta:"Dudu", opcoes:["pá","Dudu","pau"]},
+{imagem:"dia.png", correta:"dia", opcoes:["dia","pai","pão"]},
+{imagem:"mota.png", correta:"mota", opcoes:["popó","mota","papa"]},
+{imagem:"mala.png", correta:"mala", opcoes:["mala","papo","pato"]},
+{imagem:"mãe.png", correta:"mãe", opcoes:["papo","mãe","pato"]},
+{imagem:"meia.png", correta:"meia", opcoes:["meia","papa","pato"]},
+{imagem:"mata.png", correta:"mata", opcoes:["mata","papa","pato"]},
+{imagem:"mola.png", correta:"mola", opcoes:["data","mola","papa"]},
+{imagem:"vela.png", correta:"vela", opcoes:["dedo","vela","papo"]},
+{imagem:"ovo.png", correta:"ovo", opcoes:["patito","ovo","papa"]},
+{imagem:"Vilela.png", correta:"Vilela", opcoes:["Vilela","vela","ovo"]},
+{imagem:"viola.png", correta:"viola", opcoes:["viola","pá","pai"]},
+{imagem:"Violeta.png", correta:"Violeta", opcoes:["Violeta","data","pau"]},
+{imagem:"luva.png", correta:"luva", opcoes:["luva","pai","pão"]},
+{imagem:"uva.png", correta:"uva", opcoes:["popó","uva","papa"]},
+{imagem:"cama.png", correta:"cama", opcoes:["cama","mãe","pato"]},
+{imagem:"copo.png", correta:"copo", opcoes:["meia","copo","pato"]},
+{imagem:"cão.png", correta:"cão", opcoes:["mata","cão","pato"]},
+{imagem:"cola.png", correta:"cola", opcoes:["luva","cola","pão"]},
+{imagem:"capa.png", correta:"capa", opcoes:["popó","capa","papa"]},
+{imagem:"cuco.png", correta:"cuco", opcoes:["mala","cuco","pato"]},
+{imagem:"nota.png", correta:"nota", opcoes:["luva","nota","pão"]},
+{imagem:"novelo.png", correta:"novelo", opcoes:["popó","novelo","papa"]},
+{imagem:"neve.png", correta:"neve", opcoes:["neve","cuco","pato"]},
+{imagem:"Nini.png", correta:"Nini", opcoes:["luva","Nini","pão"]},
+{imagem:"navio.png", correta:"navio", opcoes:["popó","navio","papa"]},
+{imagem:"nata.png", correta:"nata", opcoes:["mala","nata","pato"]},
+{imagem:"rato.png", correta:"rato", opcoes:["rato","pá","pai"]},
+{imagem:"roda.png", correta:"roda", opcoes:["Violeta","roda","remo"]},
+{imagem:"rua.png", correta:"rua", opcoes:["roda","rua","pão"]},
+{imagem:"remo.png", correta:"remo", opcoes:["remo","rua","papa"]},
+{imagem:"ramo.png", correta:"ramo", opcoes:["mala","ramo","pato"]},
+{imagem:"rola.png", correta:"rola", opcoes:["rua","rola","pato"]},
+{imagem:"bola.png", correta:"bola", opcoes:["bola","bolo","bata"]},
+{imagem:"bolo.png", correta:"bolo", opcoes:["bolo","bola","bule"]},
+{imagem:"bata.png", correta:"bata", opcoes:["bata","bolo","Bela"]},
+{imagem:"bebé.png", correta:"bebé", opcoes:["bebé","bule","bola"]},
+{imagem:"Bela.png", correta:"Bela", opcoes:["Bela","bebé","bata"]},
+{imagem:"bule.png", correta:"bule", opcoes:["bule","bolo","bebé"]},
+{imagem:"gato.png", correta:"gato", opcoes:["gato","galo","gola"]},
+{imagem:"gola.png", correta:"gola", opcoes:["gola","gato","galo"]},
+{imagem:"cogumelo.png", correta:"cogumelo", opcoes:["cogumelo","galo","gato"]},
+{imagem:"galo.png", correta:"galo", opcoes:["galo","gato","gola"]},
+{imagem:"Gugu.png", correta:"Gugu", opcoes:["Gugu","galo","gato"]},
+{imagem:"papagaio.png", correta:"papagaio", opcoes:["papagaio","gato","galo"]},
+{imagem:"sapo.png", correta:"sapo", opcoes:["sapo","sopa","sol"]},
+{imagem:"sapato.png", correta:"sapato", opcoes:["sapato","sapo","sopa"]},
+{imagem:"sola.png", correta:"sola", opcoes:["sola","sol","sopa"]},
+{imagem:"sol.png", correta:"sol", opcoes:["sol","sino","sopa"]},
+{imagem:"sino.png", correta:"sino", opcoes:["sino","sol","sopa"]},
+{imagem:"sopa.png", correta:"sopa", opcoes:["sopa","sapo","sol"]},
+{imagem:"janela.png", correta:"janela", opcoes:["janela","judo","jipe"]},
+{imagem:"judo.png", correta:"judo", opcoes:["judo","janela","jipe"]},
+{imagem:"tijolo.png", correta:"tijolo", opcoes:["tijolo","judo","janela"]},
+{imagem:"jipe.png", correta:"jipe", opcoes:["jipe","judo","janela"]},
+{imagem:"laje.png", correta:"laje", opcoes:["laje","janela","jipe"]},
+{imagem:"Jaime.png", correta:"Jaime", opcoes:["Jaime","judo","janela"]},
+{imagem:"foca.png", correta:"foca", opcoes:["foca","faca","figo"]},
+{imagem:"faca.png", correta:"faca", opcoes:["faca","foca","fumo"]},
+{imagem:"Fátima.png", correta:"Fátima", opcoes:["Fátima","faca","foca"]},
+{imagem:"figo.png", correta:"figo", opcoes:["figo","fumo","fatia"]},
+{imagem:"fumo.png", correta:"fumo", opcoes:["fumo","figo","fatia"]},
+{imagem:"fatia.png", correta:"fatia", opcoes:["fatia","figo","fumo"]},
+{imagem:"zínia.png", correta:"zínia", opcoes:["zínia","azul","gazela"]},
+{imagem:"gazela.png", correta:"gazela", opcoes:["gazela","zínia","azul"]},
+{imagem:"azulejo.png", correta:"azulejo", opcoes:["azulejo","azul","gazela"]},
+{imagem:"azul.png", correta:"azul", opcoes:["azul","azulejo","baliza"]},
+{imagem:"baliza.png", correta:"baliza", opcoes:["baliza","azul","búzio"]},
+{imagem:"búzio.png", correta:"búzio", opcoes:["búzio","baliza","azul"]}
 ];
-
 let perguntaAtual = 0;
 let pontos = 0;
 let erros = 0;
@@ -211,7 +310,7 @@ function carregarPergunta(){
     document.getElementById("imagem").style.display = "block";
     document.getElementById("opcoes").style.display = "flex";
     document.getElementById("feedback").innerHTML = "";
-
+    
     let opcoesHTML = "";
     let opcoesMisturadas = baralhar(pergunta.opcoes);
     opcoesMisturadas.forEach((opcao,index)=>{
@@ -240,22 +339,27 @@ function verificar(resposta){
 function proximaPergunta(){
     perguntaAtual++;
     if(perguntaAtual >= perguntas.length){
-        document.getElementById("imagem").style.display="none";
-        document.getElementById("opcoes").style.display="none";
+        // Esconde elementos antigos
+        document.getElementById("imagem").style.display = "none";
+        document.getElementById("opcoes").style.display = "none";
+        document.getElementById("barra").style.width = "100%";
+
+        // Caixa de fim de jogo
         let container = document.querySelector(".container");
         container.innerHTML = `
-        <div id="fim-jogo">
-        🏆 Missão completa!<br>
-        Pontos: ${pontos} | Erros: ${erros}
-        <button onclick="reiniciarJogo()">Reiniciar</button>
-        </div>`;
+            <div id="fim-jogo">
+                🏆 Missão completa!<br>
+                Pontos: ${pontos} | Erros: ${erros}
+                <button onclick="reiniciarJogo()">Reiniciar</button>
+            </div>
+        `;
         return;
     }
     carregarPergunta();
 }
 
 function reiniciarJogo(){
-    location.reload();
+    location.reload(); // reinicia tudo rapidamente
 }
 
 function atualizarBarra(){
@@ -265,7 +369,6 @@ function atualizarBarra(){
 
 carregarPergunta();
 </script>
+
 </body>
 </html>
-
-
