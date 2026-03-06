@@ -1,0 +1,10 @@
+pato,pai,tapete
+pai,pão,pau
+patito,pato,papa
+pão,pau,pai
+pé,pá,pai
+pá,pé,pau
+pau,pai,pão
+popó,papo,papa
+papa,papo,pato
+papo,papa,pato
