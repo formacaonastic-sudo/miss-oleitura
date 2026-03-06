@@ -2,7 +2,9 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Missão Leitura!!!</title>
+
 <style>
 body{
     font-family: Arial, sans-serif;
@@ -19,7 +21,8 @@ body{
     background: white;
     padding: 15px 40px;
     border-radius: 25px;
-    width: 1050px;
+    width: 95%;
+    max-width: 1050px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.35);
     display: flex;
@@ -42,7 +45,7 @@ body{
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     margin-top: 30px;
-    margin-left: -20px; /* desloca para a esquerda */
+    margin-left: -20px;
     flex-shrink: 0;
 }
 
@@ -134,7 +137,6 @@ button:active{
     font-size: 16px;
 }
 
-/* Caixa de fim de jogo */
 #fim-jogo{
     display: flex;
     flex-direction: column;
@@ -197,6 +199,7 @@ button:active{
 
 <script>
 let cores = ["#ff6b6b","#4dabf7","#51cf66"];
+
 let perguntas = [
 {imagem:"pato.png", correta:"pato", opcoes:["pato","papa","papo"]},
 {imagem:"pipa.png", correta:"pipa", opcoes:["pipa","pato","papa"]},
@@ -291,6 +294,7 @@ let perguntas = [
 {imagem:"baliza.png", correta:"baliza", opcoes:["baliza","azul","búzio"]},
 {imagem:"búzio.png", correta:"búzio", opcoes:["búzio","baliza","azul"]}
 ];
+
 let perguntaAtual = 0;
 let pontos = 0;
 let erros = 0;
@@ -339,12 +343,6 @@ function verificar(resposta){
 function proximaPergunta(){
     perguntaAtual++;
     if(perguntaAtual >= perguntas.length){
-        // Esconde elementos antigos
-        document.getElementById("imagem").style.display = "none";
-        document.getElementById("opcoes").style.display = "none";
-        document.getElementById("barra").style.width = "100%";
-
-        // Caixa de fim de jogo
         let container = document.querySelector(".container");
         container.innerHTML = `
             <div id="fim-jogo">
@@ -359,7 +357,7 @@ function proximaPergunta(){
 }
 
 function reiniciarJogo(){
-    location.reload(); // reinicia tudo rapidamente
+    location.reload();
 }
 
 function atualizarBarra(){
